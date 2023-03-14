@@ -1,0 +1,7 @@
+{
+  "name": "articleBlog",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

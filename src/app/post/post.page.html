@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{ pageTitle }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar show-clear-button="always" [formControl]="searchFilter"
+    placeholder="{{ searchFilterText }}"></ion-searchbar>
+  <ion-list>
+    <ng-container *ngIf="posts.length > 0">
+      <!-- Table header -->
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">{{ header.id }}</ion-col>
+            <ion-col size="4">{{ header.title }}</ion-col>
+            <ion-col size="6">{{ header.body }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <!-- Table header -->
+
+
+      <!-- Post Item Content -->
+      <ng-container *ngFor="let post of posts">
+        <app-post-item [item]="post"></app-post-item>
+      </ng-container>
+      <!-- Post Item Content -->
+    </ng-container>
+
+    <!-- Empty Row Template -->
+    <ng-container *ngIf="isDataLoaded && posts.length === 0">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="auto">No Data found.</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ng-container>
+    <!-- Empty Row Template -->
+  </ion-list>
+  <ng-container *ngIf="!isDataLoaded && posts.length === 0">
+    <ion-spinner name="lines-sharp">
+    </ion-spinner>
+  </ng-container>
+</ion-content>
